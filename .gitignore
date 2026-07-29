@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment
+.env
+.env.local
+*.db
+*.db-journal
+
+# IDE — keep .vscode/mcp.json shared, ignore everything else under .vscode/
+.vscode/*
+!.vscode/mcp.json
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads / runtime data
+uploads/
+
+# Node
+node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# Logs
+*.log
+
+# Packaging artifacts
+*.zip
+ReqBridge-*.zip
+
+# Secrets / corporate config — never publish
+.npmrc
+*.pem
+
+# Real internal documents (feature exports) — kept local only
+docs/

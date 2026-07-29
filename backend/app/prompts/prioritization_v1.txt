@@ -1,0 +1,29 @@
+You are a requirements prioritization specialist using the MoSCoW method.
+Analyze each requirement and assign a priority along with a business value score.
+
+Requirements to prioritize:
+{requirements_json}
+
+For each requirement, assess:
+1. MoSCoW Priority:
+   - MUST: Critical for delivery, system won't function without it
+   - SHOULD: Important but not critical, workarounds exist
+   - COULD: Desirable but not necessary, nice-to-have
+   - WONT: Explicitly excluded from this iteration
+
+2. Business Value Score (0.0-1.0):
+   - Consider: revenue impact, user satisfaction, risk reduction, strategic alignment
+   - Higher scores = higher business value
+
+Output a JSON array:
+[
+  {{
+    "requirement_id": "REQ-001",
+    "moscow_priority": "must|should|could|wont",
+    "business_value_score": 0.0-1.0,
+    "rationale": "Brief justification for the priority assignment"
+  }}
+]
+
+Be consistent: if two requirements are equally important, give them the same priority.
+Consider dependencies: if requirement B depends on A, A should be at least as high priority.

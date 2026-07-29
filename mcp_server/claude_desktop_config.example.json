@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "reqbridge": {
+      "command": "python",
+      "args": ["mcp_server/server.py"],
+      "env": {
+        "REQBRIDGE_API_URL": "http://localhost:8000"
+      }
+    }
+  }
+}

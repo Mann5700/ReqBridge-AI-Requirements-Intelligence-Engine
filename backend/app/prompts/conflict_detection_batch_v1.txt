@@ -1,0 +1,36 @@
+You are a requirements conflict detection specialist. You will be given a LIST of
+requirements at once. Your task is to identify EVERY pair of requirements that
+conflicts with another — contradictions, ambiguities, overlaps, or dependencies.
+
+Requirements (JSON array; each has "id", "statement", "category"):
+{requirements_json}
+
+Conflict types to detect between any two requirements:
+- contradiction: Requirements directly oppose each other
+- ambiguity: Requirements can be interpreted in ways that conflict
+- overlap: Requirements describe the same thing differently (potential inconsistency)
+- dependency: One requirement implicitly depends on the other in a way that may cause issues
+
+Analyze the full list holistically and report only genuine conflicts. Do NOT flag
+superficial similarities or requirements that simply share a topic.
+
+Output a JSON array containing one object per conflicting PAIR (empty array [] if no
+conflicts exist). Reference requirements by their given "id" values:
+[
+  {{
+    "requirement_a_id": "the id of the first requirement in the pair",
+    "requirement_b_id": "the id of the second requirement in the pair",
+    "conflict_type": "contradiction|ambiguity|overlap|dependency",
+    "severity": "critical|high|medium|low",
+    "confidence": 0.0,
+    "explanation": "Clear explanation of the conflict for a human reviewer",
+    "suggested_resolution": "How this conflict might be resolved"
+  }}
+]
+
+Rules:
+- Only include pairs that genuinely conflict; omit non-conflicting pairs entirely.
+- Never report a requirement as conflicting with itself.
+- Report each conflicting pair only once (do not duplicate A↔B and B↔A).
+- Use only the exact "id" values provided in the input.
+- Respond with the JSON array only — no prose, no markdown fences.

@@ -1,0 +1,14 @@
+{
+  "include": ["backend", "mcp_server"],
+  "exclude": ["**/__pycache__", "**/.venv", "**/node_modules", "uploads"],
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "basic",
+  "reportGeneralTypeIssues": "warning",
+  "reportArgumentType": "none",
+  "reportAttributeAccessIssue": "none",
+  "reportCallIssue": "warning",
+  "reportOperatorIssue": "none",
+  "reportAssignmentType": "warning"
+}

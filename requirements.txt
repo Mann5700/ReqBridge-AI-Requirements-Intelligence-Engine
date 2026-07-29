@@ -1,0 +1,43 @@
+# ReqBridge — Python dependencies (single source of truth)
+# Frontend (Node/Vite/React) deps are in frontend/package.json.
+
+# Web framework
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.6
+python-multipart>=0.0.9
+websockets>=13.0
+httpx>=0.27.2
+
+# Database (SQLite)
+sqlalchemy[asyncio]>=2.0.35
+aiosqlite>=0.20.0
+
+# AI / LLM (uses OpenAI-compatible HTTP API via httpx — works with Ollama,
+# OpenAI, Azure OpenAI, LM Studio, llama.cpp server, etc. No SDK required.)
+langgraph>=0.2.28
+langchain-core>=0.3.10
+
+# MCP (Model Context Protocol)
+mcp>=1.1.0
+
+# Document parsing
+PyMuPDF>=1.25.0
+python-docx>=1.1.2
+openpyxl>=3.1.5
+pytesseract>=0.3.13
+Pillow>=10.4.0
+
+# Graph
+networkx>=3.3
+
+# Validation / config
+pydantic>=2.9.2
+pydantic-settings>=2.5.2
+python-dotenv>=1.0.1
+
+# Utilities
+tenacity>=9.0.0
+
+# Testing
+pytest>=8.3.3
+pytest-asyncio>=0.24.0

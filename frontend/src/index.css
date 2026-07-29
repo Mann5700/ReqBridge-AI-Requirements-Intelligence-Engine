@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-bg text-fg antialiased font-sans;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    background-image:
+      radial-gradient(1200px 600px at 50% -10%, rgba(0, 212, 170, 0.08), transparent 60%),
+      radial-gradient(800px 400px at 90% 10%, rgba(139, 92, 246, 0.06), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-surface-strong;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-border-strong;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::selection {
+    @apply bg-brand/30 text-fg;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-border bg-surface/60 shadow-card backdrop-blur-sm;
+  }
+
+  .card-interactive {
+    @apply card transition-all duration-200 hover:-translate-y-0.5 hover:border-brand/50 hover:bg-surface;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium
+           transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/60
+           disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand text-bg hover:bg-brand-400;
+  }
+
+  .btn-secondary {
+    @apply btn border border-border bg-surface-muted text-fg hover:bg-surface-strong;
+  }
+
+  .btn-ghost {
+    @apply btn text-fg-muted hover:bg-surface-muted hover:text-fg;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-border bg-bg-elevated px-3 py-2 text-sm
+           placeholder:text-fg-subtle focus:border-brand focus:outline-none
+           focus:ring-2 focus:ring-brand/20;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-2xs font-medium uppercase tracking-wide;
+  }
+
+  .pulse-dot {
+    @apply relative inline-block h-2 w-2 rounded-full;
+  }
+  .pulse-dot::after {
+    content: '';
+    @apply absolute inset-0 animate-ping rounded-full opacity-60;
+    background: currentColor;
+  }
+}

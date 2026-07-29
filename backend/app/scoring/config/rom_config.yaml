@@ -1,0 +1,224 @@
+# ROM Agent Configuration - Static Reference Data
+# This file is consumed by Python scripts to avoid embedding in the agent prompt.
+# NOTE: The Azure DevOps org/project/area/iteration paths below are placeholders.
+#       Replace them with your own ADO classification nodes. Likewise the slice
+#       codes, weights, and classification phrases are illustrative defaults.
+
+story_point_hours: 6.5
+
+ado_paths:
+  feature_iteration_path: "ORG_PROJECT\\Release\\PI"
+  feature_area_path: "ORG_PROJECT\\Program\\Team Area"
+  story_task_area_path: "ORG_PROJECT\\Program\\Team Area\\Sub Area\\TEAM_NODE"
+  allowed_iteration_roots:
+    - "ORG_PROJECT\\Program\\Team Area"
+    - "ORG_PROJECT\\Release"
+  allowed_area_roots:
+    - "ORG_PROJECT\\Program\\Team Area"
+    - "ORG_PROJECT\\Program\\Team Area\\Sub Area\\TEAM_NODE"
+
+sprint_timeline:
+  - sprint: PI12.2
+    start: "2026-04-08"
+    end: "2026-04-21"
+    iteration_path: "ORG_PROJECT\\Release\\PI12\\PI12.2"
+  - sprint: PI12.3
+    start: "2026-04-22"
+    end: "2026-05-05"
+    iteration_path: "ORG_PROJECT\\Release\\PI12\\PI12.3"
+  - sprint: PI12.4
+    start: "2026-05-06"
+    end: "2026-05-19"
+    iteration_path: "ORG_PROJECT\\Release\\PI12\\PI12.4"
+  - sprint: PI12.5
+    start: "2026-05-20"
+    end: "2026-06-02"
+    iteration_path: "ORG_PROJECT\\Release\\PI12\\PI12.5"
+    note: IP Sprint
+  - sprint: PI12.6
+    start: "2026-06-03"
+    end: "2026-06-16"
+    iteration_path: "ORG_PROJECT\\Release\\PI12\\PI12.6"
+    note: IP Sprint
+  - sprint: PI13.1
+    start: "2026-06-17"
+    end: "2026-06-30"
+    iteration_path: "ORG_PROJECT\\Release\\PI13\\PI13.1"
+  - sprint: PI13.2
+    start: "2026-07-01"
+    end: "2026-07-14"
+    iteration_path: "ORG_PROJECT\\Release\\PI13\\PI13.2"
+  - sprint: PI13.3
+    start: "2026-07-15"
+    end: "2026-07-28"
+    iteration_path: "ORG_PROJECT\\Release\\PI13\\PI13.3"
+  - sprint: PI13.4
+    start: "2026-07-29"
+    end: "2026-08-11"
+    iteration_path: "ORG_PROJECT\\Release\\PI13\\PI13.4"
+  - sprint: PI13.5
+    start: "2026-08-12"
+    end: "2026-08-25"
+    iteration_path: "ORG_PROJECT\\Release\\PI13\\PI13.5"
+
+base_weights:
+  EDC: 1.0
+  ODC: 1.3
+  IDC: 1.6
+  MSG: 1.4
+  REG: 1.6
+  SCAN_STS: 1.5
+  BRE_SEC: 1.7
+  RPT: 1.1
+  INFRA: 1.4
+  PERF: 2.0
+
+multipliers:
+  change_type:
+    config_or_mapping_only: 0.8
+    single_rule_or_single_path: 1.0
+    multi_rule_or_multi_field: 1.2
+    new_ui_flow_queue_or_integration: 1.5
+    major_redesign_or_cross_system_orchestration: 1.8
+  dependencies:
+    none: 1.0
+    one_dependency: 1.1
+    two_to_three_dependencies: 1.25
+    four_plus_or_external_dependencies: 1.5
+  test_breadth:
+    functional_only: 1.0
+    functional_plus_targeted_regression: 1.15
+    functional_plus_full_regression: 1.30
+    functional_plus_performance: 1.45
+    functional_plus_regression_plus_performance: 1.60
+  data_env:
+    minimal_existing_setup: 1.0
+    moderate_setup_or_conditioning: 1.15
+    heavy_setup_or_multi_env: 1.35
+    perf_prep_purge_image_copy_tooling: 1.60
+
+rom_bands:
+  small: [0, 6]
+  medium: [6, 12]
+  large: [12, 20]
+  xlarge: [20, null]
+
+# Signal phrases that indicate a performance-testing cycle is required
+# (reference only — generic examples).
+perf_triggers:
+  architecture_or_platform:
+    - "App-server to container/cloud platform migration"
+    - "Container routing, orchestration, or cluster changes"
+    - "Runtime platform or middleware upgrades"
+  instrumentation:
+    - "APM / observability instrumentation changes"
+  integration_path:
+    - "Message-queue, rules-engine, or mainframe interaction changes"
+    - "Traffic-flow altering changes across core processing areas (EDC/IDC/ODC)"
+  volume_and_throughput:
+    - "New transaction types or higher TPS"
+    - "Regulatory / compliance initiatives"
+    - "Screening / security-scan changes"
+    - "Seasonal / peak-load windows"
+  diagnostic:
+    - "Dropped transactions, queue build-ups, socket timeouts, latency, thread starvation not reproducible functionally"
+
+# Maps a classification category to one or more ROM slices, plus the signal
+# phrases used to detect that category in requirement text. These phrases are
+# generic placeholders — replace/extend them with your own domain vocabulary.
+classification_to_slice:
+  DATA_CAPTURE:
+    slices: ["EDC", "IDC", "ODC"]
+    match_phrases:
+      - "data capture"
+      - "data validation"
+      - "document imaging"
+      - "key entry"
+      - "corrections"
+      - "operational workflow"
+      - "ingest"
+  RULES:
+    slices: ["BRE_SEC"]
+    match_phrases:
+      - "business rule"
+      - "rule engine"
+      - "routing"
+      - "suspense"
+      - "validation rule"
+  DELIVERY:
+    slices: ["EDC"]
+    match_phrases:
+      - "delivery date"
+      - "plan flow"
+      - "forecast"
+  SECURITY:
+    slices: ["BRE_SEC"]
+    match_phrases:
+      - "security screening"
+      - "denied party"
+      - "screening"
+  SCAN:
+    slices: ["SCAN_STS"]
+    match_phrases:
+      - "scan"
+      - "scanning"
+      - "barcode"
+      - "scan event"
+      - "forecast trigger"
+  STATUS:
+    slices: ["SCAN_STS"]
+    match_phrases:
+      - "status"
+      - "visibility"
+      - "status determination"
+      - "status publish"
+      - "tracking"
+  MESSAGING:
+    slices: ["MSG"]
+    match_phrases:
+      - "messaging"
+      - "outbound message"
+      - "inbound message"
+      - "notification"
+      - "distribution"
+  REGULATORY:
+    slices: ["REG"]
+    match_phrases:
+      - "regulatory"
+      - "filing"
+      - "customs"
+      - "compliance"
+      - "country-specific"
+  REPORTING:
+    slices: ["RPT"]
+    match_phrases:
+      - "report"
+      - "reporting"
+      - "extract"
+  INFRA:
+    slices: ["INFRA"]
+    match_phrases:
+      - "infrastructure"
+      - "product upgrade"
+      - "platform change"
+      - "deployment"
+      - "environment readiness"
+      - "container"
+      - "cluster"
+  MODERNIZATION:
+    slices: ["INFRA", "EDC"]
+    match_phrases:
+      - "modernization"
+      - "interface migration"
+  PERFORMANCE:
+    slices: ["PERF"]
+    match_phrases:
+      - "performance"
+      - "perf test"
+      - "load test"
+      - "stress test"
+      - "throughput"
+      - "latency"
+      - "peak"
+      - "TPS"
+      - "volume"
